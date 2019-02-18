@@ -62,7 +62,7 @@ func newNick(n string) *nick {
 	}
 }
 
-// Returns a copy of the internal tracker nick state at this time.
+// Nick returns a copy of the internal tracker nick state at this time.
 // Relies on tracker-level locking for concurrent access.
 func (nk *nick) Nick() *Nick {
 	n := &Nick{
@@ -131,7 +131,7 @@ func (nk *nick) parseModes(modes string) {
 	}
 }
 
-// Returns true if the Nick is associated with the Channel.
+// IsOn returns true if the Nick is associated with the Channel.
 func (nk *Nick) IsOn(ch string) (*ChanPrivs, bool) {
 	cp, ok := nk.Channels[ch]
 	return cp, ok
@@ -156,7 +156,7 @@ func (nm *NickMode) Equals(other *NickMode) bool {
 	return reflect.DeepEqual(nm, other)
 }
 
-// Returns a string representing the nick. Looks like:
+// String returns a string representing the nick. Looks like:
 //	Nick: <nick name> e.g. CowMaster
 //	Hostmask: <ident@host> e.g. moo@cows.org
 //	Real Name: <real name> e.g. Steve "CowMaster" Bush
@@ -180,7 +180,7 @@ func (nk *nick) String() string {
 	return nk.Nick().String()
 }
 
-// Returns a string representing the nick modes. Looks like:
+// String returns a string representing the nick modes. Looks like:
 //	+iwx
 func (nm *NickMode) String() string {
 	if nm == nil {

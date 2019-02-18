@@ -113,7 +113,7 @@ func newChannel(name string) *channel {
 	}
 }
 
-// Returns a copy of the internal tracker channel state at this time.
+// Channel returns a copy of the internal tracker channel state at this time.
 // Relies on tracker-level locking for concurrent access.
 func (ch *channel) Channel() *Channel {
 	c := &Channel{
@@ -235,7 +235,7 @@ func (ch *channel) parseModes(modes string, modeargs ...string) {
 	}
 }
 
-// Returns true if the Nick is associated with the Channel
+// IsOn returns true if the Nick is associated with the Channel
 func (ch *Channel) IsOn(nk string) (*ChanPrivs, bool) {
 	cp, ok := ch.Nicks[nk]
 	return cp, ok
@@ -274,7 +274,7 @@ func (cp *ChanPrivs) Equals(other *ChanPrivs) bool {
 	return reflect.DeepEqual(cp, other)
 }
 
-// Returns a string representing the channel. Looks like:
+// String returns a string representing the channel. Looks like:
 //	Channel: <channel name> e.g. #moo
 //	Topic: <channel topic> e.g. Discussing the merits of cows!
 //	Mode: <channel modes> e.g. +nsti
@@ -296,7 +296,7 @@ func (ch *channel) String() string {
 	return ch.Channel().String()
 }
 
-// Returns a string representing the channel modes. Looks like:
+// String returns a string representing the channel modes. Looks like:
 //	+npk key
 func (cm *ChanMode) String() string {
 	if cm == nil {
@@ -335,7 +335,7 @@ func (cm *ChanMode) String() string {
 	return str
 }
 
-// Returns a string representing the channel privileges. Looks like:
+// String returns a string representing the channel privileges. Looks like:
 //	+o
 func (cp *ChanPrivs) String() string {
 	if cp == nil {

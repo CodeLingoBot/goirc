@@ -90,7 +90,7 @@ func (st *stateTracker) NewNick(n string) *Nick {
 	return st.nicks[n].Nick()
 }
 
-// Returns a nick for the nick n, if we're tracking it.
+// GetNick returns a nick for the nick n, if we're tracking it.
 func (st *stateTracker) GetNick(n string) *Nick {
 	st.mu.Lock()
 	defer st.mu.Unlock()
@@ -127,7 +127,7 @@ func (st *stateTracker) ReNick(old, neu string) *Nick {
 	return nk.Nick()
 }
 
-// Removes a nick from being tracked.
+// DelNick removes a nick from being tracked.
 func (st *stateTracker) DelNick(n string) *Nick {
 	st.mu.Lock()
 	defer st.mu.Unlock()
@@ -206,7 +206,7 @@ func (st *stateTracker) NewChannel(c string) *Channel {
 	return st.chans[c].Channel()
 }
 
-// Returns a Channel for the channel c, if we're tracking it.
+// GetChannel returns a Channel for the channel c, if we're tracking it.
 func (st *stateTracker) GetChannel(c string) *Channel {
 	st.mu.Lock()
 	defer st.mu.Unlock()
@@ -216,7 +216,7 @@ func (st *stateTracker) GetChannel(c string) *Channel {
 	return nil
 }
 
-// Removes a Channel from being tracked.
+// DelChannel removes a Channel from being tracked.
 func (st *stateTracker) DelChannel(c string) *Channel {
 	st.mu.Lock()
 	defer st.mu.Unlock()
@@ -265,7 +265,7 @@ func (st *stateTracker) ChannelModes(c, modes string, args ...string) *Channel {
 	return ch.Channel()
 }
 
-// Returns the Nick the state tracker thinks is Me.
+// Me returns the Nick the state tracker thinks is Me.
 // NOTE: Nick() requires the mutex to be held.
 func (st *stateTracker) Me() *Nick {
 	st.mu.Lock()
@@ -273,7 +273,7 @@ func (st *stateTracker) Me() *Nick {
 	return st.me.Nick()
 }
 
-// Returns true if both the channel c and the nick n are tracked
+// IsOn returns true if both the channel c and the nick n are tracked
 // and the nick is associated with the channel.
 func (st *stateTracker) IsOn(c, n string) (*ChanPrivs, bool) {
 	st.mu.Lock()

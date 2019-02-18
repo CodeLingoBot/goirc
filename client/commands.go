@@ -227,7 +227,7 @@ func (conn *Conn) Version(t string) { conn.Ctcp(t, VERSION) }
 // Action sends a CTCP "ACTION" to the target nick or channel t.
 func (conn *Conn) Action(t, msg string) { conn.Ctcp(t, ACTION, msg) }
 
-// Topic() sends a TOPIC command for a channel.
+// Topic sends a TOPIC command for a channel.
 // If no topic is provided this requests that a 332 response is sent by the
 // server for that channel, which can then be handled to retrieve the current
 // channel topic. If a topic is provided the channel's topic will be set.
